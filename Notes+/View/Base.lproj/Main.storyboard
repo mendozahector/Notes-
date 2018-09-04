@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,54 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="190" id="MnE-3m-SHN" customClass="NotesTableViewCell" customModule="Notes_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="190"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="MnE-3m-SHN">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MnE-3m-SHN" id="O6V-uA-wKj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="189.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Fb-m5-DBR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="189.5"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9rR-3x-QFw">
-                                                    <rect key="frame" x="8" y="8" width="359" height="173.5"/>
-                                                </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kLh-Vs-7Jj">
-                                                    <rect key="frame" x="114" y="55" width="147.5" height="80"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eiffel Tower" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq6-T9-M0e">
-                                                            <rect key="frame" x="15" y="0.0" width="117.5" height="26.5"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our visit to Paris" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qq-cV-grk">
-                                                            <rect key="frame" x="0.0" y="56.5" width="147.5" height="23.5"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="9rR-3x-QFw" secondAttribute="trailing" id="8Ir-Eg-IXM"/>
-                                                <constraint firstItem="9rR-3x-QFw" firstAttribute="top" secondItem="4Fb-m5-DBR" secondAttribute="topMargin" id="MzM-9P-CLb"/>
-                                                <constraint firstItem="kLh-Vs-7Jj" firstAttribute="centerY" secondItem="4Fb-m5-DBR" secondAttribute="centerY" id="PeZ-vv-3Xf"/>
-                                                <constraint firstItem="9rR-3x-QFw" firstAttribute="leading" secondItem="4Fb-m5-DBR" secondAttribute="leadingMargin" id="Vdi-w1-4TY"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="9rR-3x-QFw" secondAttribute="bottom" id="Z74-wc-MAr"/>
-                                                <constraint firstItem="kLh-Vs-7Jj" firstAttribute="centerX" secondItem="4Fb-m5-DBR" secondAttribute="centerX" id="Zqp-Jm-tdn"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="4Fb-m5-DBR" secondAttribute="trailing" id="34W-Pk-CXe"/>
-                                        <constraint firstAttribute="bottom" secondItem="4Fb-m5-DBR" secondAttribute="bottom" id="OLO-SH-Wyw"/>
-                                        <constraint firstItem="4Fb-m5-DBR" firstAttribute="leading" secondItem="O6V-uA-wKj" secondAttribute="leading" id="nmf-OK-4Sh"/>
-                                        <constraint firstItem="4Fb-m5-DBR" firstAttribute="top" secondItem="O6V-uA-wKj" secondAttribute="top" id="rfo-5K-dMM"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
