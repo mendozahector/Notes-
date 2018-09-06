@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notes Table View Controller-->
+        <!--My Travel Notes-->
         <scene sceneID="XsJ-tJ-8fC">
             <objects>
                 <tableViewController id="zQ7-5I-SQV" customClass="NotesTableViewController" customModule="Notes_" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="MnE-3m-SHN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" id="MnE-3m-SHN">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MnE-3m-SHN" id="O6V-uA-wKj">
@@ -32,7 +32,13 @@
                             <outlet property="delegate" destination="zQ7-5I-SQV" id="O60-yX-Paa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="YTs-2B-4uz"/>
+                    <navigationItem key="navigationItem" title="My Travel Notes" id="YTs-2B-4uz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="goW-BU-Ayk">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="zQ7-5I-SQV" id="IPe-12-V3W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qe3-7v-1dX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
