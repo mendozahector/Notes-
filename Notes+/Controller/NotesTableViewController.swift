@@ -39,7 +39,16 @@ class NotesTableViewController: UITableViewController {
     
     //MARK: - TableView Delegate Method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        deleteNotes(indexPath)
+        //deleteNotes(indexPath)
+        performSegue(withIdentifier: "goToNoteScrollView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! NoteScrollViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.arrayIndex = indexPath.row
+        }
     }
 
     

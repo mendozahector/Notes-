@@ -13,6 +13,7 @@
 		3E4D9862213F26E900821909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4D9861213F26E900821909 /* Assets.xcassets */; };
 		3E4D9865213F26E900821909 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4D9863213F26E900821909 /* LaunchScreen.storyboard */; };
 		3E4D986D213F27E000821909 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D986C213F27E000821909 /* NotesTableViewController.swift */; };
+		3E7E8F4321417161001A5EA6 /* NoteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E8F4221417161001A5EA6 /* NoteScrollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3E4D9864213F26E900821909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E4D9866213F26E900821909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E4D986C213F27E000821909 /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
+		3E7E8F4221417161001A5EA6 /* NoteScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteScrollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				3E4D986C213F27E000821909 /* NotesTableViewController.swift */,
+				3E7E8F4221417161001A5EA6 /* NoteScrollViewController.swift */,
 				3E4D9857213F26E800821909 /* AppDelegate.swift */,
 			);
 			path = Controller;
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E4D9858213F26E800821909 /* AppDelegate.swift in Sources */,
+				3E7E8F4321417161001A5EA6 /* NoteScrollViewController.swift in Sources */,
 				3E4D9860213F26E800821909 /* NotesDataModel.xcdatamodeld in Sources */,
 				3E4D986D213F27E000821909 /* NotesTableViewController.swift in Sources */,
 			);

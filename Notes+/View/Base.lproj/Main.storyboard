@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,10 +40,60 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="CFu-N4-co7" kind="show" identifier="goToNoteScrollView" id="hWL-ZQ-xn7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qe3-7v-1dX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1000.8" y="-117.39130434782609"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="uLa-wR-Kha">
+            <objects>
+                <viewController id="CFu-N4-co7" customClass="NoteScrollViewController" customModule="Notes_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C8p-PN-jYa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z4J-pH-F3w">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JAw-Ob-1Fx">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="z4J-pH-F3w" firstAttribute="top" secondItem="6tl-D5-c7i" secondAttribute="top" id="ByE-Mp-P5k"/>
+                            <constraint firstItem="z4J-pH-F3w" firstAttribute="leading" secondItem="6tl-D5-c7i" secondAttribute="leading" id="EGc-1k-dxy"/>
+                            <constraint firstItem="z4J-pH-F3w" firstAttribute="bottom" secondItem="6tl-D5-c7i" secondAttribute="bottom" id="b7J-e3-Er3"/>
+                            <constraint firstItem="z4J-pH-F3w" firstAttribute="trailing" secondItem="6tl-D5-c7i" secondAttribute="trailing" id="yyW-bC-bqx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6tl-D5-c7i"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" leftItemsSupplementBackButton="YES" id="TWp-lU-7CB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="8ij-wK-78H">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="CFu-N4-co7" id="RiH-ZH-ZSK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="noteNavigationBar" destination="TWp-lU-7CB" id="JVt-3Z-S69"/>
+                        <outlet property="scrollTextView" destination="JAw-Ob-1Fx" id="Rjt-dd-EVt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rMi-Hz-URJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815" y="-117"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JLW-rZ-tSc">
