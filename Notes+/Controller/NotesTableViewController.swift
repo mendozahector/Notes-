@@ -82,42 +82,44 @@ class NotesTableViewController: UITableViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func addNoteAlert(_ imageData: Data) {
+        var titleTextField = UITextField()
+        var descriptionTextField = UITextField()
         
+        let alert = UIAlertController(title: "Add New Note", message: "Please add a place and a description of your note", preferredStyle: .alert)
         
-//        var titleTextField = UITextField()
-//        var descriptionTextField = UITextField()
-//
-//        let alert = UIAlertController(title: "Add New Note", message: "Please add a place and a description of your note", preferredStyle: .alert)
-//
-//        let action = UIAlertAction(title: "Add", style: .default) { (action) in
-//            if titleTextField.text!.isEmpty || descriptionTextField.text!.isEmpty {
-//                //do nothing
-//            } else {
-//                let newNote = Notes(context: self.context)
-//                newNote.noteTitle = titleTextField.text!
-//                newNote.noteDescription = descriptionTextField.text!
-//
-//                self.notesArray.append(newNote)
-//
-//                self.saveNotes()
-//            }
-//        }
-//
-//        alert.addTextField { (alertTextField) in
-//            alertTextField.placeholder = "Place"
-//            print("isEditing: \(alertTextField.isEditing)")
-//            titleTextField = alertTextField
-//        }
-//
-//        alert.addTextField { (alertTextField) in
-//            alertTextField.placeholder = "Description"
-//            descriptionTextField = alertTextField
-//        }
-//
-//        alert.addAction(action)
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//
-//        present(alert, animated: true, completion: nil)
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            if titleTextField.text!.isEmpty || descriptionTextField.text!.isEmpty {
+                //do nothing
+            } else {
+                let newNote = Notes(context: self.context)
+                newNote.noteTitle = titleTextField.text!
+                newNote.noteDescription = descriptionTextField.text!
+                newNote.noteImage = imageData
+        
+                self.notesArray.append(newNote)
+        
+                self.saveNotes()
+            }
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Place"
+            print("isEditing: \(alertTextField.isEditing)")
+            titleTextField = alertTextField
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Description"
+            descriptionTextField = alertTextField
+        }
+        
+        alert.addAction(action)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     
@@ -216,10 +218,9 @@ extension NotesTableViewController: UIImagePickerControllerDelegate, UINavigatio
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         myImage.image = image
-        let imageData = UIImageJPEGRepresentation(image, 0.7)
-        notesArray[0].setValue(imageData, forKey: "noteImage")
-        print("Core Data Image saved")
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
         picker.dismiss(animated: true, completion: nil)
+        addNoteAlert(imageData!)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
