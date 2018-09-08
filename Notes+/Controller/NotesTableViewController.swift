@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class NotesTableViewController: UITableViewController {
+    @IBOutlet weak var myImage: UIImageView!
+    
     var notesArray = [Notes]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -18,6 +20,10 @@ class NotesTableViewController: UITableViewController {
         super.viewDidLoad()
         loadNotes()
         setupLongPressGesture()
+        if let photoInData = notesArray[0].noteImage {
+            let image = UIImage(data: photoInData as Data)
+            myImage.image = image
+        }
     }
     
 
@@ -54,40 +60,64 @@ class NotesTableViewController: UITableViewController {
     
     //MARK: - Add New Notes
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        var titleTextField = UITextField()
-        var descriptionTextField = UITextField()
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         
-        let alert = UIAlertController(title: "Add New Note", message: "Please add a place and a description of your note", preferredStyle: .alert)
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            if titleTextField.text!.isEmpty || descriptionTextField.text!.isEmpty {
-                //do nothing
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePicker.sourceType = .camera
+                self.present(imagePicker, animated: true, completion: nil)
             } else {
-                let newNote = Notes(context: self.context)
-                newNote.noteTitle = titleTextField.text!
-                newNote.noteDescription = descriptionTextField.text!
-                
-                self.notesArray.append(newNote)
-                
-                self.saveNotes()
+                print("Camera not available")
             }
-        }
+        }))
         
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Place"
-            print("isEditing: \(alertTextField.isEditing)")
-            titleTextField = alertTextField
-        }
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
         
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Description"
-            descriptionTextField = alertTextField
-        }
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        alert.addAction(action)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(actionSheet, animated: true, completion: nil)
         
-        present(alert, animated: true, completion: nil)
+        
+//        var titleTextField = UITextField()
+//        var descriptionTextField = UITextField()
+//
+//        let alert = UIAlertController(title: "Add New Note", message: "Please add a place and a description of your note", preferredStyle: .alert)
+//
+//        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+//            if titleTextField.text!.isEmpty || descriptionTextField.text!.isEmpty {
+//                //do nothing
+//            } else {
+//                let newNote = Notes(context: self.context)
+//                newNote.noteTitle = titleTextField.text!
+//                newNote.noteDescription = descriptionTextField.text!
+//
+//                self.notesArray.append(newNote)
+//
+//                self.saveNotes()
+//            }
+//        }
+//
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = "Place"
+//            print("isEditing: \(alertTextField.isEditing)")
+//            titleTextField = alertTextField
+//        }
+//
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = "Description"
+//            descriptionTextField = alertTextField
+//        }
+//
+//        alert.addAction(action)
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//
+//        present(alert, animated: true, completion: nil)
     }
     
     
@@ -174,5 +204,25 @@ extension NotesTableViewController: UIGestureRecognizerDelegate {
                 updateNotes(indexPath: indexPath)
             }
         }
+    }
+}
+
+
+
+
+//MARK: Image Picker Controller Delegate
+extension NotesTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        myImage.image = image
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
+        notesArray[0].setValue(imageData, forKey: "noteImage")
+        print("Core Data Image saved")
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
