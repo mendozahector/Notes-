@@ -56,8 +56,6 @@ class NoteScrollViewController: UIViewController, UITextViewDelegate {
         } catch {
             print("Error saving context: \(error)")
         }
-        
-        self.view.reloadInputViews()
     }
     
     func loadNotes(with request: NSFetchRequest<Notes> = Notes.fetchRequest()) {

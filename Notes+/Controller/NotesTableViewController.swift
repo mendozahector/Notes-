@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 
 class NotesTableViewController: UITableViewController {
-    @IBOutlet weak var myImage: UIImageView!
-    
     var notesArray = [Notes]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -20,24 +18,33 @@ class NotesTableViewController: UITableViewController {
         super.viewDidLoad()
         loadNotes()
         setupLongPressGesture()
-        if let photoInData = notesArray[0].noteImage {
-            let image = UIImage(data: photoInData as Data)
-            myImage.image = image
-        }
+        
+        tableView.register(UINib(nibName: "NoteCell", bundle: nil), forCellReuseIdentifier: "customNoteCell")
+        
+        configureTableView()
     }
     
 
     // MARK: - TableView Data Source
+    func configureTableView() {
+        tableView.rowHeight = 190.0
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notesArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customNoteCell", for: indexPath) as! CustomNoteCell
         
         let item = notesArray[indexPath.row]
         
-        cell.textLabel?.text = item.noteTitle
+        cell.titleLabel.text = item.noteTitle
+        cell.descriptionLabel.text = item.noteDescription
+        
+        if item.noteImage != nil {
+            cell.noteImage.image = UIImage(data: item.noteImage!)
+        }
         
         return cell
     }
@@ -216,10 +223,10 @@ extension NotesTableViewController: UIGestureRecognizerDelegate {
 extension NotesTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageData = UIImageJPEGRepresentation(image, 0.05)
         
-        myImage.image = image
-        let imageData = UIImageJPEGRepresentation(image, 0.5)
         picker.dismiss(animated: true, completion: nil)
+        
         addNoteAlert(imageData!)
     }
     
