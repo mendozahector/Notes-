@@ -26,8 +26,8 @@ class NoteScrollViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(NoteScrollViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NoteScrollViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NoteScrollViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NoteScrollViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         noteNavigationBar.title = notesArray[arrayIndex!].noteTitle
         
@@ -72,7 +72,7 @@ class NoteScrollViewController: UIViewController, UITextViewDelegate {
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else {return}
 
-        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         
         let keyboardFrame = keyboardSize.cgRectValue
         keyboardHeight = keyboardFrame.height
