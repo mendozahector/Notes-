@@ -16,6 +16,7 @@ class NotesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadNotes()
         setupLongPressGesture()
         
